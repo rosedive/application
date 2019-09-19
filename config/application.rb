@@ -13,7 +13,7 @@ module Sapp
 
     # Settings in config/environments/* take precedence over those specified here.
     # Application configuration can go into files in config/initializers
-    config.i18n.default_locale = :en
+    config.i18n.default_locale = :el
     config.generators do |g|
       g.test_framework :rspec,
                        fixtures: true,

@@ -18,22 +18,43 @@ RSpec.feature "Task management function", type: :feature do
 
   scenario "Test task creation" do
 # visit to new_task_path (transition to task registration page)
-  # 1.Write the process to visit new_task_path here
-
-  # In the input field labeled "Task Name" and in the input field labeled "Task Details"
-  # Fill in the task title and content respectively
-  # 2.Write the process to fill_in (input) the contents in the input field of label name "task name" here
-  # 3.Write the process to fill_in (input) the contents in the input column of the label name "task details" here
-
-  # Click_on a button with a value (notation letter) of “Register”
-  # 4.Write a process to click_on (click) a button with a value (notation letter) of “Register”
-
-  # Check if the information that is supposed to be registered by click is displayed on the task detail page
-  # (Assumption that transition to the task details screen will be made if the task is registered)
-  # 5.On the task detail page, Write a code to check (expect) whether the data (description) that should have been created by the test code is have_content (included)
-  end
-
+visit new_task_path
+# In the input field labeled "Task Name" and in the input field labeled "Task Details"
+# Fill in the task title and content respectively
+fill_in  'Name' ,  with: 'completed'
+fill_in  'Content' ,  with: 'ruby task'
+# Click_on a button with a value (notation letter) of “Register”
+click_on  'Δημιουργήστε'
+# Check if the information that is supposed to be registered by click is displayed on the task detail page
+# (Assumption that transition to the task details screen will be made if the task is registered)
+expect(page ).to  have_content  'ruby task'
+end
   scenario "Test task details" do
-
+    @task = Task.create!(name: 'test_task_01', content: 'testtesttest', status: 'completed', priority: 'medium',start_date: '10.2.2019', end_date: '20.10.2019')
+    visit task_path(id: @task.id)
+    expect(page).to have_content('test_task_01')
+    expect(page).to have_content('testtesttest')
+  end
+  scenario "Test whether tasks are arranged in descending order of creation date" do
+    Task.create!(name: 'test_task_01', content: 'testtesttest', status: 'completed', priority: 'medium',start_date: '10.2.2019', end_date: '20.10.2019')
+    Task.create!(name: 'test_task_02', content: 'testtesttest2', status: 'completed', priority: 'medium',start_date: '10.2.2019', end_date: '20.10.2019')
+    @task = Task.order('created_at ASC')
+  end
+  scenario "Test task updating" do
+    task1=Task.create!(name: 'test_task_01', content: 'testtesttest', status: 'completed', priority: 'medium',start_date: '10.2.2019', end_date: '20.10.2019')
+    visit edit_task_path(id: task1.id)
+    fill_in 'Name', with: 'name update'
+    fill_in 'Content', with: 'task update'
+    click_on 'Ενημερώστε'
+    visit tasks_path
+    expect(page).to have_content('name update')
+    expect(page).to have_content('task update')
+  end
+  scenario 'Test Task Deletion' do
+    Task.create!(name: 'test_task_01', content: 'testtesttest', status: 'completed', priority: 'medium',start_date: '10.2.2019', end_date: '20.10.2019')
+    visit tasks_path
+    expect(page).to have_content('testtesttest')
+    click_on 'Destroy'
+    expect(page).not_to have_content('testtesttest')
   end
 end
