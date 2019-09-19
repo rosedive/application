@@ -5,6 +5,7 @@ class TasksController < ApplicationController
   # GET /tasks.json
   def index
     @tasks = Task.order("created_at DESC")
+    @tasks = Task.order_list(params[:sort_by])
   end
 
   # GET /tasks/1
