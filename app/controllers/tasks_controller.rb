@@ -6,8 +6,13 @@ class TasksController < ApplicationController
   def index
     @tasks = Task.order("created_at DESC")
     @tasks = Task.order_list(params[:sort_by])
+  if params[:search]
+    @tasks = Task.search(params[:search]).order("created_at DESC")
+  else
+    #@tasks = Task.order(:created_at).page(params[:page])
+    @tasks = Task.order(:created_at)
   end
-
+end
   # GET /tasks/1
   # GET /tasks/1.json
   def show
@@ -61,7 +66,7 @@ class TasksController < ApplicationController
       format.json { head :no_content }
     end
   end
-
+  
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_task
@@ -70,6 +75,6 @@ class TasksController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def task_params
-      params.require(:task).permit(:name, :status, :content, :priority, :start_date, :end_date)
+      params.require(:task).permit(:name, :status, :content, :priority, :start_date, :end_date,:search)
     end
 end

@@ -6,6 +6,11 @@ class Task < ApplicationRecord
     validates :start_date, presence: true
     validates :end_date, presence: true
     
+    def self.search(search)
+      if search
+      where("status LIKE ?" ,"%#{search}%")
+    end
+  end
 def self.order_list(sort_order)
     if sort_order == "name"
       order(name: :desc)
