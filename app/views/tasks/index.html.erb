@@ -42,5 +42,6 @@
 <%= form_tag(tasks_path, :method => "get", id: "search-form") do %>
   <%= text_field_tag :search, params[:search], placeholder: "Search tasks" %>
   <%= submit_tag "Search" %>
-<% end %>
+<% end %><br/><br/>
 
+<%= paginate @tasks %>
