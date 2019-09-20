@@ -6,8 +6,8 @@ RSpec.feature "Task management function", type: :feature do
   # In scenario (alias of it), write the processing of the test for each item you want to check.
   scenario "Test task list" do
     
-    Task.create!(name: 'test_task_01', content: 'testtesttest')
-    Task.create!(name: 'test_task_02', content: 'samplesample')
+    Task.create!(name: 'test_task_01', status: 'test_task_01', content: 'testtesttest', priority: 'testtesttest', start_date: '10.2.2019', end_date: '10.2.2019')
+    Task.create!(name: 'test_task_02', status: 'test_task_02', content: 'samplesample', priority: 'samplesample', start_date: '10.2.2019', end_date: '10.2.2019')
   
      visit tasks_path
   
@@ -18,6 +18,7 @@ RSpec.feature "Task management function", type: :feature do
 
   scenario "Test task creation" do
 # visit to new_task_path (transition to task registration page)
+
 visit new_task_path
 # In the input field labeled "Task Name" and in the input field labeled "Task Details"
 # Fill in the task title and content respectively
