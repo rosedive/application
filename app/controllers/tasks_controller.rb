@@ -72,9 +72,9 @@ end
     def set_task
       @task = Task.find(params[:id])
     end
-
+    
     # Never trust parameters from the scary internet, only allow the white list through.
     def task_params
-      params.require(:task).permit(:name, :status, :content, :priority, :start_date, :end_date,:search)
+      params.require(:task).permit(:name, :status, :content, :prior, :start_date, :end_date,:search)
     end
 end

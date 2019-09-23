@@ -19,11 +19,11 @@ ActiveRecord::Schema.define(version: 2019_09_19_130139) do
     t.string "name", null: false
     t.string "status", null: false
     t.string "content", null: false
-    t.string "priority", null: false
+    t.integer "prior", default: 0
+    t.date "start_date"
+    t.date "end_date"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.datetime "start_date"
-    t.datetime "end_date"
   end
 
   create_table "users", force: :cascade do |t|

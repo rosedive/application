@@ -13,6 +13,9 @@ class Task < ApplicationRecord
       where("status LIKE ?" ,"%#{search}%")
     end
   end
+
+ 
+
 def self.order_list(sort_order)
     if sort_order == "name"
       order(name: :desc)
@@ -22,4 +25,6 @@ def self.order_list(sort_order)
       order(start_date: :desc)
     end
    end
+
+   enum prior: [:low, :medium, :high]
 end
