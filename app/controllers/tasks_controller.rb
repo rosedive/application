@@ -1,16 +1,17 @@
 class TasksController < ApplicationController
   before_action :set_task, only: [:show, :edit, :update, :destroy]
+  #before_filter :authorize, only: [:edit, :update]
 
   # GET /tasks
   # GET /tasks.json
   def index
-    @tasks = Task.order("created_at DESC")
-    @tasks = Task.order_list(params[:sort_by])
+    #@tasks = Task.order("created_at DESC")
+    #@tasks = Task.order_list(params[:sort_by])
   if params[:search]
     @tasks = Task.search(params[:search]).order("created_at DESC").page params[:page]
   else
     #@tasks = Task.order(:created_at).page(params[:page])
-    @tasks = Task.order(:created_at).page(params[:page])
+    @tasks = Task.order('created_at desc').page(params[:page])
   end
 end
   # GET /tasks/1
@@ -21,6 +22,7 @@ end
   # GET /tasks/new
   def new
     @task = Task.new
+    @task.user_id = current_user.id
   end
 
   # GET /tasks/1/edit
@@ -31,7 +33,7 @@ end
   # POST /tasks.json
   def create
     @task = Task.new(task_params)
-
+    @task.user_id = current_user.id
     respond_to do |format|
       if @task.save
         format.html { redirect_to @task, notice: 'Task was successfully created.' }

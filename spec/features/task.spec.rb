@@ -4,16 +4,27 @@ require 'rails_helper'
 # On the right side of this RSpec.feature, write the test item name like "task management feature" (grouped by do ~ end)
 RSpec.feature "Task management function", type: :feature do
   # In scenario (alias of it), write the processing of the test for each item you want to check.
+  background  do
+    User.create!(name: "Armel", email: 'ni@gmail.Com', user_type:'admin' , password: '123456')
+    User.create!(name: "Nina", email: 'na@gmail.Com',  user_type:'admin' , password: '123456')
+   end
   scenario "Test task list" do
-    
-    Task.create!(name: 'test_task_01', status: 'test_task_01', content: 'testtesttest', prior: 'medium', start_date: '10.2.2019', end_date: '10.2.2019')
-    Task.create!(name: 'test_task_02', status: 'test_task_02', content: 'samplesample', prior: 'medium', start_date: '10.2.2019', end_date: '10.2.2019')
+
+    visit signup_path
+    fill_in  'Name' ,  with: 'clet'
+    fill_in  'Email' ,  with: 'ni@gmail.Com'
+    fill_in  'User type' ,  with: 'admin'
+   fill_in  'Password' ,  with: '123456'
+   fill_in  'Password confirmation' ,  with: '123456'
+   click_button 'Sign Up'
+    #Task.create!(name: 'test_task_01', status: 'test_task_01', content: 'testtesttest', prior: 'medium', start_date: '10.2.2019', end_date: '10.2.2019')
+    #Task.create!(name: 'test_task_02', status: 'test_task_02', content: 'samplesample', prior: 'medium', start_date: '10.2.2019', end_date: '10.2.2019')
+    expect(page).to have_content 'Logged in as'
+    #  visit tasks_path
   
-     visit tasks_path
-  
-    # Write a test that you expect to get wrong results
-    expect(page).to have_content 'testtesttest'
-    expect(page).to have_content 'samplesample'
+    # # Write a test that you expect to get wrong results
+    # expect(page).to have_content 'testtesttest'
+    # expect(page).to have_content 'samplesample'
   end
 
   scenario "Test task creation" do
@@ -39,7 +50,7 @@ end
   scenario "Test whether tasks are arranged in descending order of creation date" do
     Task.create!(name: 'test_task_01', content: 'testtesttest', status: 'completed', prior: 'medium',start_date: '10.2.2019', end_date: '20.10.2019')
     Task.create!(name: 'test_task_02', content: 'testtesttest2', status: 'completed', prior: 'medium',start_date: '10.2.2019', end_date: '20.10.2019')
-    @task = Task.order('created_at ASC')
+    @task = Task.order('created_at desc')
   end
   scenario "Test task updating" do
     task1=Task.create!(name: 'test_task_01', content: 'testtesttest', status: 'completed', prior: 'medium',start_date: '10.2.2019', end_date: '20.10.2019')
@@ -58,4 +69,5 @@ end
     click_on 'Destroy'
     expect(page).not_to have_content('testtesttest')
   end
+
 end
