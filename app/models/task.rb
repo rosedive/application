@@ -1,6 +1,6 @@
 class Task < ApplicationRecord
   paginates_per  3
-  belongs_to :user, dependent: :destroy
+  #belongs_to :user, dependent: :destroy
      #validates :name, presence: true
      #validates :status, presence: true
      #validates :content, presence: true
