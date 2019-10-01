@@ -44,8 +44,8 @@
     <%= form.date_select :end_date %>
   </div>
   <div class="field">
-    <%= form.label :user_id %>
-    <%= form.text_field :user_id, value: 'current_user.id'%>
+   
+    <%= form.hidden_field :user_id, value: 'current_user.id'%>
   </div>
 
   <div class="actions">

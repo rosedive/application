@@ -1,8 +1,8 @@
 class UsersController < ApplicationController
   before_action :set_task, only: [:show, :edit, :update, :destroy]
-def index
-  
+  def index
 
+  end
   def new
     @user = User.new
   end

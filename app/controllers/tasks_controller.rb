@@ -1,6 +1,6 @@
 class TasksController < ApplicationController
   before_action :set_task, only: [:show, :edit, :update, :destroy]
-  #before_filter :authorize, only: [:edit, :update]
+  before_action :authorize, except: [:index]
 
   # GET /tasks
   # GET /tasks.json
@@ -77,6 +77,6 @@ end
     
     # Never trust parameters from the scary internet, only allow the white list through.
     def task_params
-      params.require(:task).permit(:name, :status, :content, :prior, :start_date, :end_date,:search)
+      params.require(:task).permit(:name, :status, :content, :prior, :start_date, :end_date,:search, :user_id)
     end
 end
