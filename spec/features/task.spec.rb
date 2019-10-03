@@ -25,7 +25,7 @@ visit new_task_path
 fill_in  'Name' ,  with: 'completed'
 fill_in  'Content' ,  with: 'ruby task'
 # Click_on a button with a value (notation letter) of “Register”
-click_on  'Δημιουργήστε'
+click_on  ' Δημιουργήστε'
 # Check if the information that is supposed to be registered by click is displayed on the task detail page
 # (Assumption that transition to the task details screen will be made if the task is registered)
 expect(page ).to  have_content  'ruby task'
