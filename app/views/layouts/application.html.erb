@@ -33,17 +33,17 @@
           <%= link_to "Sort By Date", tasks_path(sort_by: "end_date"), class:'dropdown-item' %>
         </div>
       </li>
-      <%= form_tag(tasks_path, :method => "get", id: "search-form", class:"form-inline", id:"search") do %>
-        <%= text_field_tag :search, params[:search], placeholder: "Search task", class:"form-control mr-sm-2" %>
-        <%= submit_tag "Search", class:"btn btn-outline-primary my-2 my-sm-0", type:"submit", style:"color:#fff;" %>
+      <%= form_tag(tasks_path, :method => "get", id: "search-form", class:"form-inline") do %>
+        <%= text_field_tag :search, params[:search], placeholder: "Search status", class:"form-control mr-sm-2" %>
+        <%= submit_tag "Search", class:"btn btn-outline-primary my-2 my-sm-0", type:"submit", id:"every" %>
       <% end %>
     </form>
     <% if current_user %>
        Logged in as <%= current_user.name %>.
-       <%= link_to "Log Out", logout_path, class: 'btn btn-danger' %>
+       <%= link_to "Log Out", logout_path, class:"nav-link", id:"every" %>
      <% else %>
-       <%= link_to "Sign Up", signup_path, class: 'btn btn-success' %> or
-       <%= link_to "Log In", login_path, class: 'btn btn-success' %>
+       <%= link_to "Sign Up", signup_path, class:"nav-link", id:"every" %> 
+       <%= link_to "Log In", login_path, class:"nav-link", id:"every" %>
      <% end %>
     </ul>
   </div>
