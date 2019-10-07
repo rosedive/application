@@ -33,10 +33,7 @@
           <%= link_to "Sort By Date", tasks_path(sort_by: "end_date"), class:'dropdown-item' %>
         </div>
       </li>
-      <%= form_tag(tasks_path, :method => "get", id: "search-form", class:"form-inline") do %>
-        <%= text_field_tag :search, params[:search], placeholder: "Search status", class:"form-control mr-sm-2" %>
-        <%= submit_tag "Search", class:"btn btn-outline-primary my-2 my-sm-0", type:"submit", id:"every" %>
-      <% end %>
+      
     </form>
     <% if current_user %>
        Logged in as <%= current_user.name %>.
@@ -47,6 +44,10 @@
      <% end %>
     </ul>
   </div>
+  <%= form_tag(tasks_path, :method => "get", style: "float:right;", class:"form-inline") do %>
+    <%= text_field_tag :term, params[:term], placeholder: "search by both name or status", class:"form-control mr-sm-2" %>
+    <%= submit_tag "Search", class:"btn btn-outline-primary my-2 my-sm-0", type:"submit", id:"every" %>
+  <% end %>
 </nav><br/><br/>
 <center>
     <%= yield %>
