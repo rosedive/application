@@ -44,7 +44,7 @@
      <% end %>
     </ul>
   </div>
-  <%= form_tag(tasks_path, :method => "get", style: "float:right;", class:"form-inline") do %>
+  <%= form_tag(tasks_path, :method => "get", style: "float:right;margin-right:3px", class:"form-inline") do %>
     <%= text_field_tag :term, params[:term], placeholder: "search by both name or status", class:"form-control mr-sm-2" %>
     <%= submit_tag "Search", class:"btn btn-outline-primary my-2 my-sm-0", type:"submit", id:"every" %>
   <% end %>
