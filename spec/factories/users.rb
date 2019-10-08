@@ -3,6 +3,6 @@ FactoryBot.define do
     name { "MyString" }
     email { "MyString" }
     user_type { "MyString" }
-    password_digest { "MyString" }
+    password { "MyString" }
   end
 end

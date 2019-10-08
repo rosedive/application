@@ -9,24 +9,18 @@
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
   </head>
+
+  <body>
   <nav class="navbar navbar-expand-lg navbar-light bg-success">
   <a class="navbar-brand" href="#" id="every">Everleaf</a>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>
-  <% if current_user %>
-  Logged in as <%= current_user.email %>.
-  <%= link_to "Log Out", logout_path, class:"nav-link", id:"every" %>
-<% else %>
-  <%= link_to "Sign Up", signup_path,  class:"nav-link", id:"every"  %> 
-  <%= link_to "Log In", login_path,  class:"nav-link", id:"every"  %>
-<% end %>
   <div class="collapse navbar-collapse" id="navbarNav">
     <ul class="navbar-nav">
       <li class="nav-item active">
         <%= link_to 'Home', tasks_path, class:"nav-link", id:"every" %>
       </li>
-      
       <li class="nav-item">
         <%= link_to 'New Task', new_task_path, class:"nav-link", id:"every" %>
       </li>
@@ -39,17 +33,23 @@
           <%= link_to "Sort By Date", tasks_path(sort_by: "end_date"), class:'dropdown-item' %>
         </div>
       </li>
-      <%= form_tag(tasks_path, :method => "get", id: "search-form", class:"form-inline", id:"search") do %>
-        <%= text_field_tag :search, params[:search], placeholder: "Search task", class:"form-control mr-sm-2" %>
-        <%= submit_tag "Search", class:"btn btn-outline-primary my-2 my-sm-0", type:"submit", style:"color:#fff;" %>
-      <% end %>
+      
     </form>
-    
+    <% if current_user %>
+       Logged in as <%= current_user.name %>.
+       <%= link_to "Log Out", logout_path, class:"nav-link", id:"every" %>
+     <% else %>
+       <%= link_to "Sign Up", signup_path, class:"nav-link", id:"every" %> 
+       <%= link_to "Log In", login_path, class:"nav-link", id:"every" %>
+     <% end %>
     </ul>
   </div>
+  <%= form_tag(tasks_path, :method => "get", style: "float:right;", class:"form-inline") do %>
+    <%= text_field_tag :term, params[:term], placeholder: "search by both name or status", class:"form-control mr-sm-2" %>
+    <%= submit_tag "Search", class:"btn btn-outline-primary my-2 my-sm-0", type:"submit", id:"every" %>
+  <% end %>
 </nav><br/><br/>
-  <body>
-  
+<center>
     <%= yield %>
 <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>

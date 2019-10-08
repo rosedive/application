@@ -1,5 +1,11 @@
-
-<center>
+<%= form_tag(tasks_path, method: :get,style:'float:left;margin-right:3px') do %>
+ <%= text_field_tag :term1, params[:term1],placeholder:'  search by task name' %>
+ <%= submit_tag ' Search', name: nil %>
+<% end %><br/><br/>
+<%= form_tag(tasks_path, method: :get,style:'float:left;margin-right:3px') do %>
+ <%= text_field_tag :term2, params[:term2],placeholder:'  search by status' %>
+ <%= submit_tag 'Search', name: nil %>
+<% end %>
 <h1>Tasks</h1><br/><br/>
 
 <table class="table table-striped table-dark" id="table">
@@ -14,6 +20,7 @@
          <th scope="col">End date</th>
          <th scope="col">User</th>
          <th scope="col">Action</th>
+         <th colspan="3"></th>
     </tr>
   </thead>
   <tbody>
