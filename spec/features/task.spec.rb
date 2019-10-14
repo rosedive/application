@@ -69,6 +69,21 @@ RSpec.feature "Task management function", type: :feature do
     visit tasks_path
     expect(page).not_to have_content('content1')
   end
- 
- 
+  scenario "Test whether tasks are arranged in descending order of deadline" do
+    click_on 'New Task'
+      fill_in  'Name' ,  with: 'task2'
+      fill_in 'Status' , with: 'status2'
+      fill_in  'Content' ,  with: 'content2'
+      # fill_in  'Status' ,  with: 'status2'
+      # fill_in  'Priority' ,  with: 'Priority2'
+      #fill_in  'End date' ,  with: '10.2.2019'
+      click_on 'Δημιουργήστε'
+      @task = Task.first
+      @task_newest = Task.last
+      @task_newest.end_date = '10.10.2020'
+      @task_newest.save
+      #Task.order('created_at desc').all.expect == [@task_newest, @email]
+      task  = Task.order('end_date desc').all
+    expect(task).to eq([@task_newest, @task])
+  end
 end
