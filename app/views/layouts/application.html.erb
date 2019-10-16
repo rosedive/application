@@ -33,8 +33,15 @@
           <%= link_to "Sort By Date", tasks_path(sort_by: "end_date"), class:'dropdown-item' %>
         </div>
       </li>
-      
-    </form>
+      </form>
+      <% if current_user && current_user.user_type == "admin" %>
+    <%= link_to 'Admin screen', admin_users_path, id: "every" %>
+   <% end %>
+   <% if current_user %>
+     <li class="nav-item">
+     <%= link_to 'Normal Users', users_path, id: "every" %>
+     </li>
+     <% end %>
     <% if current_user %>
        Logged in as <%= current_user.name %>.
        <%= link_to "Log Out", logout_path, class:"nav-link", id:"every" %>
