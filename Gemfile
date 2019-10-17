@@ -55,6 +55,7 @@ group :test do
   gem 'capybara', '>= 2.15'
   gem 'selenium-webdriver'
   gem 'database_cleaner'
+  gem 'launchy'
   # Easy installation and use of web drivers to run system tests with browsers
   gem 'webdrivers'
 end
