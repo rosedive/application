@@ -1,19 +1,10 @@
 <%= form_tag(tasks_path, method: :get,style:'float:left;margin-right:3px', class:"form-inline") do %>
-<<<<<<< HEAD
- <%= text_field_tag :term1, params[:term1],placeholder: "search by task name",  class:"form-control mr-sm-2" %>
- <%= submit_tag ' Search', class:"btn btn-outline-primary my-2 my-sm-0", type:"submit", id:"every" %>
-<% end %><br/><br/>
-<%= form_tag(tasks_path, method: :get,style:'float:left;margin-right:3px', class:"form-inline") do %>
- <%= text_field_tag :term2, params[:term2],placeholder:"search by status", class:"form-control mr-sm-2" %>
- <%= submit_tag 'Search', class:"btn btn-outline-primary my-2 my-sm-0", type:"submit", id:"every" %>
-=======
  <%= text_field_tag :term1, params[:term1],placeholder:'  search by task name', class:"form-control mr-sm-2" %>
  <%= submit_tag ' Search', class:"btn btn-outline-primary my-2 my-sm-0", name: nil , type:"submit", id:"every"%>
 <% end %><br/><br/>
 <%= form_tag(tasks_path, method: :get,style:"float:left;margin-right:3px", class:"form-inline") do %>
  <%= text_field_tag :term2, params[:term2],placeholder:'  search by status', class:"form-control mr-sm-2" %>
  <%= submit_tag 'Search', class:"btn btn-outline-primary my-2 my-sm-0", name: nil, type:"submit", id:"every" %>
->>>>>>> master
 <% end %>
 <h1>Tasks</h1><br/><br/>
 
