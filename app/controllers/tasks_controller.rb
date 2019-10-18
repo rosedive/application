@@ -5,6 +5,8 @@ class TasksController < ApplicationController
   # GET /tasks
   # GET /tasks.json
   def index
+    #@tasks = Task.order("created_at DESC")
+    #@tasks = Task.order_list(params[:sort_by])
     @tasks = if params[:term]
       Task.where('status LIKE ? or name LIKE ?', "%#{params[:term]}%","%#{params[:term]}%").page params[:page]
     elsif params[:term1]
@@ -19,6 +21,7 @@ class TasksController < ApplicationController
   def search
     @task =task.search(params[:search])
   end
+
   # GET /tasks/1
   # GET /tasks/1.json
   def show
