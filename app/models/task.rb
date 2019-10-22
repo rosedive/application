@@ -21,6 +21,8 @@ def self.order_list(sort_order)
       order(name: :desc)
     elsif sort_order == "end_date"
       order(end_date: :desc)
+    elsif sort_order == "prior"
+      order(prior: :desc)
     else
       order(start_date: :desc)
     end

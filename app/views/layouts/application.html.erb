@@ -31,6 +31,7 @@
         <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
           <%= link_to "Sort By Name", tasks_path(sort_by: "name"), class:'dropdown-item' %>
           <%= link_to "Sort By Date", tasks_path(sort_by: "end_date"), class:'dropdown-item' %>
+          <%= link_to "Sort By Priority", tasks_path(sort_by: "prior"), class:'dropdown-item' %>
         </div>
       </li>
       </form>
