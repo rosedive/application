@@ -1,6 +1,6 @@
 class TasksController < ApplicationController
   before_action :set_task, only: [:show, :edit, :update, :destroy]
-  #before before_action :authorize, except: [:inndex]
+  before_action :authorize
 
   # GET /tasks
   # GET /tasks.json
