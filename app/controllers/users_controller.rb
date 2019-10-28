@@ -26,7 +26,7 @@ class UsersController < ApplicationController
     #unless current_user
       @user = User.new(user_params)
       if @user.save
-        #session[:user_id] = @user.id
+        session[:user_id] = @user.id
         redirect_to admin_users_url, notice: 'User was successfully created.'
       else
         render :new
@@ -56,7 +56,7 @@ end
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_user
-      @user = user.find(params[:id])
+      @user = User.find(params[:id])
     end
     
     # Never trust parameters from the scary internet, only allow the white list through.
