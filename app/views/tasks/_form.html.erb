@@ -1,6 +1,6 @@
 
-    </li><%= form_with(model: task, class: 'Login-form', local: true) do |form| %>
-  <% if task.errors.any? %>
+    </li><%= form_for(@task, class: 'Login-form', local: true) do |form| %>
+  <% if @task.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(task.errors.count, "error") %> prohibited this task from being saved:</h2>
 
@@ -46,6 +46,12 @@
   <div class="field">
     <%= form.hidden_field :user_id %>
   </div>
+  <div class = "tables">
+ <% Label.all.each do |label| %>
+   <%= form.label:title, label.title %>
+ <%= form.check_box :label_ids, { multiple: true, checked: label[:checked], disabled: label[:disabled], include_hidden: false }, label[:id] %>
+ <% end %>
+ </div>
   <div class="actions">
     <%= form.submit %>
   </div>

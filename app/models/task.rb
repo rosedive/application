@@ -7,6 +7,8 @@ class Task < ApplicationRecord
     # validates :priority, presence: true
     # validates :start_date, presence: true
     # validates :end_date, presence: true
+    has_many :tasks_labels, dependent: :destroy
+    has_many :labels, :through => :tasks_labels
     belongs_to :user
     def self.search(search)
       if search

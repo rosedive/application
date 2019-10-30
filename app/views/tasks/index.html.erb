@@ -5,7 +5,13 @@
 <%= form_tag(tasks_path, method: :get,style:"float:left;margin-right:3px", class:"form-inline") do %>
  <%= text_field_tag :term2, params[:term2],placeholder:'  search by status', class:"form-control mr-sm-2" %>
  <%= submit_tag 'Search', class:"btn btn-outline-primary my-2 my-sm-0", name: nil, type:"submit", id:"every" %>
-<% end %>
+<% end %><br></br>
+
+<%= form_tag(tasks_path, method: :get,style:"float:left;margin-right:3px", class:"form-inline") do %>
+  <%= text_field_tag :term3, params[:term3],placeholder:'  search label title', class:"form-control mr-sm-2" %>
+  <%= submit_tag '  Search', class:"btn btn-outline-primary my-2 my-sm-0", name: nil, type:"submit", id:"every" %>
+ <% end %>
+
 <h1>Tasks</h1><br/><br/>
 
 <table class="table table-striped table-dark" id="table">
@@ -19,6 +25,7 @@
         <th scope="col">Start date</th>
          <th scope="col">End date</th>
          <th scope="col">User</th>
+         <th scope="col">Labels</th>
          <th scope="col">Action</th>
          <th colspan="3"></th>
     </tr>
@@ -33,7 +40,8 @@
         <td><%= task.prior %></td>
         <td><%= task.start_date %></td>
         <td><%= task.end_date %></td>
-        <td><%= task.user_id %></td>
+        <td><%= task.user.name%></td>
+        <td><%= task.labels.length %></td>
         <td>
           <%= link_to 'Show', task, class:"btn btn-success" %>
           <%= link_to 'Edit', edit_task_path(task), class:"btn btn-primary" %>
